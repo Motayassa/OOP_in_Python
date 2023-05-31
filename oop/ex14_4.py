@@ -2,8 +2,8 @@ class Translator:
     '''для перевода с английского на русский'''
     def add(self, eng, rus):
         if 'tr' not in self.__dict__:
-            self.tr={}
-        self.tr.setdefault(eng,[])
+            self.tr = {}
+        self.tr.setdefault(eng, [])
         if rus not in self.tr[eng]:
             self.tr[eng].append(rus)
             
@@ -12,8 +12,10 @@ class Translator:
         del self.tr[eng]
         
     def translate(self, eng): 
-        '''- для перевода с английского на русский (метод должен возвращать список из русских слов,
-        соответствующих переводу английского слова, даже если в списке всего одно слово)'''
+        '''- для перевода с английского на русский
+        (метод должен возвращать список из русских слов,
+        соответствующих переводу английского слова,
+        даже если в списке всего одно слово)'''
         return self.tr[eng]
 
 
@@ -29,8 +31,7 @@ go - ходить
 milk - молоко'''
 line_in = list(line_in.split('\n'))
 for i in line_in:
-    eng_word,rus_word=i.split(' - ')
-    tr.add(eng_word,rus_word)
-
+    eng_word, rus_word=i.split(' - ')
+    tr.add(eng_word, rus_word)
 tr.remove('car')
-print ( * tr.translate ( 'go' ) )
+print(*tr.translate('go'))
