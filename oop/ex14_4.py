@@ -6,12 +6,12 @@ class Translator:
         self.tr.setdefault(eng, [])
         if rus not in self.tr[eng]:
             self.tr[eng].append(rus)
-            
+  
     def remove(self, eng):
         '''- для удаления связки по указанному английскому слову'''
         del self.tr[eng]
-        
-    def translate(self, eng): 
+
+    def translate(self, eng):
         '''- для перевода с английского на русский
         (метод должен возвращать список из русских слов,
         соответствующих переводу английского слова,
@@ -31,7 +31,7 @@ go - ходить
 milk - молоко'''
 line_in = list(line_in.split('\n'))
 for i in line_in:
-    eng_word, rus_word=i.split(' - ')
+    eng_word, rus_word = i.split(' - ')
     tr.add(eng_word, rus_word)
 tr.remove('car')
 print(*tr.translate('go'))
