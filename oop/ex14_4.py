@@ -6,7 +6,7 @@ class Translator:
         self.tr.setdefault(eng, [])
         if rus not in self.tr[eng]:
             self.tr[eng].append(rus)
-  
+
     def remove(self, eng):
         '''- для удаления связки по указанному английскому слову'''
         del self.tr[eng]
