@@ -8,7 +8,6 @@ class Graph:
 
     def show_table(self):
         if self.is_show:
-            print("Отображение данных закрыто")
             print(*self.data, sep=' ')
         else:
             print("Отображение данных закрыто")
