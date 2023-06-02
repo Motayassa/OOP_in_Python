@@ -4,19 +4,12 @@ class TriangleChecker:
         self.b = b
         self.c = c
 
-    def is_triangle(self, a, b, c):
-        if (
-            (type(self.a) not in (int, float)) or
-            (type(self.b) not in (int, float)) or
-            (type(self.c) not in (int, float))
-        ):
+    def is_triangle(self):
+        if not all(map(lambda x: type(x) in (int, float),
+                       (self.a, self.b, self.c))):
             return 1
 
-        if (
-            self.a < 0 or self.a == 0 or
-            self.b < 0 or self.b == 0 or
-            self.c < 0 or self.c == 0
-        ):
+        if not all(map(lambda x: x > 0, (self.a, self.b, self.c))):
             return 1
 
         if (
@@ -26,14 +19,10 @@ class TriangleChecker:
         ):
             return 2
 
-        if (
-            self.a + self.b > self.c and
-            self.a + self.c > self.b and
-            self.b + self.c > self.a
-        ):
+        else:
             return 3
 
 
 a, b, c = map(int, input().split())
 tr = TriangleChecker(a, b, c)
-print(tr.is_triangle(a, b, c))
+print(tr.is_triangle())
