@@ -1,10 +1,3 @@
-'''Прочитайте из входного потока числовые данные с помощью команды:
-data_graph = list(map(int, input().split()))
-Создайте объект gr класса Graph с набором прочитанных данных, вызовите метод show_bar(),
-затем метод set_show() со значением fl_show = False и вызовите метод show_table().
-На экране должны отобразиться две соответствующие строки.'''
-
-
 class Graph:
     def __init__(self, data, is_show=True):
         self.data = data
@@ -36,3 +29,10 @@ class Graph:
 
     def set_show(self, fl_show):
         self.is_show = fl_show
+
+
+data_graph = list(map(int, input().split()))
+gr = Graph(data_graph)
+gr.show_bar()
+gr.set_show(False)
+gr.show_table()
