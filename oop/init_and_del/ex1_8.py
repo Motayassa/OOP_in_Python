@@ -1,14 +1,14 @@
 class Graph:
     def __init__(self, data, is_show=True):
-        self.data = data
+        self.data = data[:]
         self.is_show = is_show
 
     def set_data(self, data):
-        self.data = data
+        self.data = data[:]
 
     def show_table(self):
         if self.is_show:
-            print(*self.data, sep=' ')
+            print(' '.join(map(str, self.data)))
         else:
             print("Отображение данных закрыто")
 
