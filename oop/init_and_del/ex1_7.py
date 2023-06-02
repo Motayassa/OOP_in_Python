@@ -35,3 +35,5 @@ class TriangleChecker:
 
 
 a, b, c = map(int, input().split())
+tr = TriangleChecker(a, b, c)
+print(tr.is_triangle)
