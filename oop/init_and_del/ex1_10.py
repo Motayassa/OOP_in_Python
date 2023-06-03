@@ -29,13 +29,13 @@ price - цена.
 P.S. Отображать на экране ничего не нужно, только создать объекты по указанным требованиям.'''
 
 
-class Curt:
+class Cart:
     def __init__(self, goods):
         goods = []
         self.goods = goods
 
     def add(self, gd):
-        pass
+        self.goods.append(gd)
 
     def remove(self, indx):
         pass
@@ -63,3 +63,6 @@ class Notebook:
 
 class Cup:
     create_product()
+
+
+cart = Cart()
