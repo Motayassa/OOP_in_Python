@@ -38,10 +38,10 @@ class Cart:
         self.goods.append(gd)
 
     def remove(self, indx):
-        pass
+        self.goods.pop(indx)
 
     def get_list(self):
-        pass
+        return [", ".join(map(lambda x: f"{x.name}: {x.price}", self.goods))]
 
 
 def create_product(self, name, price):
