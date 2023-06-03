@@ -1,15 +1,3 @@
-'''
-Класс MotherBoard должен иметь метод get_config(self) для возвращения текущей конфигурации компонентов на материнской плате в виде следующего списка из четырех строк:
-['Материнская плата: <наименование>',
-'Центральный процессор: <наименование>, <тактовая частота>',
-'Слотов памяти: <общее число слотов памяти>',
-'Память: <наименование_1> - <объем_1>; <наименование_2> - <объем_2>; ...; <наименование_N> - <объем_N>']
-
-Создайте объект mb класса MotherBoard с одним CPU (объект класса CPU) и двумя слотами памяти (объекты класса Memory).
-
-P.S. Отображать на экране ничего не нужно, только создать объект по указанным требованиям.'''
-
-
 class CPU:
     def __init__(self, name, fr):
         self.name = name
@@ -23,7 +11,20 @@ class Memory:
 
 
 class MotherBoard:
-    def __init__(self, name, cpu, *mems, total_mem_slots=4):
+    def __init__(self, name, cpu, *mems):
         self.name = name
         self.cpu = cpu
+        self.total_mem_slots = 4
         self.mem_slots = mems[:self.total_mem_slots]
+
+    def get_config(self):
+        return [f'Материнская плата: {self.name}',
+                f'Центральный процессор: {self.cpu.name}, {self.cpu.fr}',
+                f'Слотов памяти: {self.total_mem_slots}',
+                'Память: ' + "; ".join(map(lambda x: f"{x.name} - {x.volume}", self.mem_slots))]
+
+
+mb = MotherBoard('Gigabyte',
+                 CPU('Intel', 2000),
+                 Memory('Kingston', 1000),
+                 Memory('Kingston', 2000))
