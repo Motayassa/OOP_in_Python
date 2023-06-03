@@ -28,3 +28,5 @@ mb = MotherBoard('Gigabyte',
                  CPU('Intel', 2000),
                  Memory('Kingston', 1000),
                  Memory('Kingston', 2000))
+
+print(mb.get_config())
