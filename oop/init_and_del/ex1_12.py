@@ -24,3 +24,22 @@ class GamePole:
                 continue
             self.pole[i][j].mine = True
             m += 1
+
+        indx = (-1, -1), (-1, 0), (-1, 1), (0, -1), (0, 1), (1, -1), (1, 0), (1, 1)
+        for x in range(self._n):
+            for y in range(self._n):
+                if not self.pole[x][y].mine:
+                    mines = ((
+                        self.pole[x+i][y+j].mine for i, j in indx if
+                        0 <= i <= self._n and 0 <= j <= self._n
+                        ))
+                    self.pole[x][y].around_mines = mines
+
+    def show(self):
+        for row in self.pole:
+            print(*map(lambda x: '#' if not x.fl_open else x.around_mines
+                       if not x.mine else '*', row))
+
+
+pole_game = (10, 12)
+pole_game.show()
