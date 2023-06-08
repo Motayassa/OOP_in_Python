@@ -1,13 +1,71 @@
+import string
+
+
 class FormLogin:
     def __init__(self, lgn, psw):
         self.login = lgn
         self.password = psw
 
     def render_template(self):
+
         return "\n".join(['<form action="#">',
                           self.login.get_html(),
                           self.password.get_html(),
                           '</form>'])
+
+
+class TextInput:
+    CHARS = "абвгдеёжзийклмнопрстуфхцчшщьыъэюя " + string.ascii_lowercase
+    CHARS_CORRECT = CHARS + CHARS.upper() + string.digits
+
+    def __init__(self, name, size=10):
+        self.name = name
+        self.size = size
+
+    def get_html(self):
+        x = f"<p class='login'>{self.name}: <input type='text' size={self.size} />"
+
+        return x
+
+    @classmethod
+    def check_name(cls, name):
+        if 3 < len(name) < 50:
+            x = False
+
+        for i in name:
+            if i not in cls.CHARS_CORRECT:
+                x = False
+        x = True
+
+        if not x:
+            raise ValueError("некорректное поле name")
+
+
+class PasswordInput:
+    CHARS = "абвгдеёжзийклмнопрстуфхцчшщьыъэюя " + string.ascii_lowercase
+    CHARS_CORRECT = CHARS + CHARS.upper() + string.digits
+
+    def __init__(self, name, size=10):
+        self.name = name
+        self.size = size
+
+    def get_html(self):
+        x = f"<p class='password'>{self.name}: <input type='text' size={self.size} />"
+
+        return x
+
+    @classmethod
+    def check_name(cls, name):
+        if 3 < len(name) < 50:
+            x = False
+
+        for i in name:
+            if i not in cls.CHARS_CORRECT:
+                x = False
+        x = True
+
+        if not x:
+            raise ValueError("некорректное поле name")
 
 
 login = FormLogin(TextInput("Логин"), PasswordInput("Пароль"))
