@@ -1,3 +1,12 @@
+class Factory:
+    def build_sequence(self):
+        return []
+
+    def build_number(self, string):
+        string = float(string)
+        return string
+
+
 class Loader:
     def parse_format(self, string, factory):
         seq = factory.build_sequence()
@@ -9,4 +18,5 @@ class Loader:
 
 
 ld = Loader()
-res = ld.parse_format("4, 5, -6.5", Factory())
+s = input()
+res = ld.parse_format(s, Factory())
