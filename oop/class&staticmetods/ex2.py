@@ -1,4 +1,4 @@
-import string
+from string import ascii_lowercase, digits
 
 
 class FormLogin:
@@ -15,12 +15,15 @@ class FormLogin:
 
 
 class TextInput:
-    CHARS = "абвгдеёжзийклмнопрстуфхцчшщьыъэюя " + string.ascii_lowercase
-    CHARS_CORRECT = CHARS + CHARS.upper() + string.digits
+    CHARS = "абвгдеёжзийклмнопрстуфхцчшщьыъэюя " + ascii_lowercase
+    CHARS_CORRECT = CHARS + CHARS.upper() + digits
 
     def __init__(self, name, size=10):
-        self.name = name
-        self.size = size
+        if self.check_name(name):
+            self.name = name
+            self.size = size
+        else:
+            raise ValueError("некорректное поле name")
 
     def get_html(self):
         x = f"<p class='login'>{self.name}: <input type='text' size={self.size} />"
@@ -29,25 +32,25 @@ class TextInput:
 
     @classmethod
     def check_name(cls, name):
-        if 3 < len(name) < 50:
-            x = False
+        if 3 > len(name) or len(name) > 52:
+            return False
 
         for i in name:
             if i not in cls.CHARS_CORRECT:
-                x = False
-        x = True
-
-        if not x:
-            raise ValueError("некорректное поле name")
+                return False
+        return True
 
 
 class PasswordInput:
-    CHARS = "абвгдеёжзийклмнопрстуфхцчшщьыъэюя " + string.ascii_lowercase
-    CHARS_CORRECT = CHARS + CHARS.upper() + string.digits
+    CHARS = "абвгдеёжзийклмнопрстуфхцчшщьыъэюя " + ascii_lowercase
+    CHARS_CORRECT = CHARS + CHARS.upper() + digits
 
     def __init__(self, name, size=10):
-        self.name = name
-        self.size = size
+        if self.check_name(name):
+            self.name = name
+            self.size = size
+        else:
+            raise ValueError("некорректное поле name")
 
     def get_html(self):
         x = f"<p class='password'>{self.name}: <input type='text' size={self.size} />"
@@ -56,17 +59,14 @@ class PasswordInput:
 
     @classmethod
     def check_name(cls, name):
-        if 3 < len(name) < 50:
-            x = False
+        if 3 > len(name) or len(name) > 52:
+            return False
 
         for i in name:
             if i not in cls.CHARS_CORRECT:
-                x = False
-        x = True
-
-        if not x:
-            raise ValueError("некорректное поле name")
+                return False
+        return True
 
 
-login = FormLogin(TextInput("Логин"), PasswordInput("Пароль"))
+login = FormLogin(TextInput("1290"), PasswordInput("Пар//ль"))
 html = login.render_template()
