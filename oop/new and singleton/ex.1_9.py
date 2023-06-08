@@ -11,3 +11,6 @@ class Point:
 
     def clone(self):
         pass
+
+
+pt = Point(12, 7)
