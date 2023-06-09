@@ -9,16 +9,14 @@ class Viber:
     def remove_message(cls, msg):
         cls.msgs.pop(msg)
 
-    def set_like(self):
-        if self.fl_like:
-            self.fl_like = False
-        else:
-            self.fl_like = True
+    @classmethod
+    def set_like(cls, msg):
+        msg.fl_like = not msg.fl_like
 
     @classmethod
-    def show_last_message(cls, n):
-        list = [cls.msgs.keys()]
-        print(list[:len(list) - n - 1:-1])
+    def show_last_message(cls, number):
+        for m in tuple(cls.msgs[-number:]):
+            print(m)
 
     @classmethod
     def total_messages(cls):
