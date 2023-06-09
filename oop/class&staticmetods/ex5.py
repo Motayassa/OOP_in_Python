@@ -10,7 +10,7 @@ class AppStore:
         cls.applications.remove(app)
 
     def block_application(self, app):
-        self.blocked = True
+        app.blocked = True
 
     @classmethod
     def total_apps(cls):
@@ -20,3 +20,12 @@ class AppStore:
 class Application:
     def __init__(self, name, blocked=False):
         self.name = name
+        self.blocked = blocked
+
+
+store = AppStore()
+app_youtube = Application("Youtube")
+store.add_application(app_youtube)
+store.block_application(app_youtube)
+print(app_youtube.__dict__)
+print(AppStore.applications)
