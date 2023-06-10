@@ -1,17 +1,3 @@
-'''Server - для описания работы серверов в сети;
-Router - для описания работы роутеров в сети (в данной задаче полагается один роутер);
-Data - для описания пакета информации.'''
-
-'''send_data(data) - для отправки информационного пакета data (объекта класса Data) с указанным IP-адресом получателя
-(пакет отправляется роутеру и сохраняется в его буфере - локальном свойстве buffer);
-get_data() - возвращает список принятых пакетов (если ничего принято не было, то возвращается пустой список) и очищает входной буфер;
-get_ip() - возвращает свой IP-адрес.
-
-Соответственно в объектах класса Server должны быть локальные свойства:
-
-buffer - список принятых пакетов (объекты класса Data, изначально пустой);
-ip - IP-адрес текущего сервера.'''
-
 class Server:
     count_server = 0
 
@@ -21,10 +7,11 @@ class Server:
 
     def __init__(self):
         self.buffer = []
-        self.ip = Server.count_server
+        self.ip = self.count_server
+        self.router = None
 
-    def send_data(data):
-        pass
+    def send_data(self, data):
+        Router.buffer.append(data)
 
     def get_data(self):
         x = self.buffer
@@ -38,10 +25,46 @@ class Server:
 
 
 class Router:
-    pass
+    # def __init__(self):
+    buffer = []
+    link_srv = []
+
+    def link(self, server):
+        self.link_srv.append(server)
+
+    @classmethod
+    def unlink(cls, server):
+        cls.link_srv.remove(server)
+
+    def clear_buffer(self):
+        self.buffer = []
+
+    def send_data(self):
+        for i in self.buffer:
+            for j in self.link_srv:
+                if i.ip == j.ip:
+                    j.buffer.append(i)
+        self.clear_buffer()
 
 
 class Data:
     def __init__(self, data, ip):
         self.data = data
         self.ip = ip
+
+
+router = Router()
+sv_from = Server()
+sv_from2 = Server()
+router.link(sv_from)
+router.link(sv_from2)
+router.link(Server())
+router.link(Server())
+sv_to = Server()
+router.link(sv_to)
+sv_from.send_data(Data("Hello", sv_to.get_ip()))
+sv_from2.send_data(Data("Hello", sv_to.get_ip()))
+sv_to.send_data(Data("Hi", sv_from.get_ip()))
+router.send_data()
+msg_lst_from = sv_from.get_data()
+msg_lst_to = sv_to.get_data()
