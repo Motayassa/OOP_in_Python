@@ -11,7 +11,7 @@ class Server:
         self.router = None
 
     def send_data(self, data):
-        Router.buffer.append(data)
+        self.buffer.append(data)
 
     def get_data(self):
         x = self.buffer
@@ -25,16 +25,18 @@ class Server:
 
 
 class Router:
-    # def __init__(self):
-    buffer = []
-    link_srv = []
+    def __init__(self):
+        self.buffer = []
+        self.link_srv = []
 
     def link(self, server):
         self.link_srv.append(server)
+        server.router = self
 
-    @classmethod
-    def unlink(cls, server):
-        cls.link_srv.remove(server)
+    def unlink(self, server):
+        s = self.link_srv.remove(server)
+        if s:
+            s.router = None
 
     def clear_buffer(self):
         self.buffer = []
