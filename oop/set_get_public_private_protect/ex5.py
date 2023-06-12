@@ -12,13 +12,14 @@ class Point:
 
 
 class Rectangle:
-    def __init__(self, *args):
-        if len(args) == 2:
-            self.__sp = args[0]
-            self.__ep = args[1]
-        else:
-            self.__sp = args[0], args[1]
-            self.__ep = args[2], args[3]
+    def __init__(self, x1, y1, x2=None, y2=None):
+        self.__sp = self.__ep = None
+
+        if isinstance(x1, Point) and isinstance(y1, Point):
+            self.set_coords(x1, y1)
+        elif all(map(lambda x: type(x) in (int, float), (x1, y1, x2, y2))):
+            self.__sp = Point(x1, y1)
+            self.__ep = Point(x2, y2)
 
     def set_coords(self, sp, ep):
         self.__sp = sp
@@ -28,7 +29,8 @@ class Rectangle:
         return self.__sp, self.__ep
 
     def draw(self):
-        print(f"Прямоугольник с координатами: {self.get_coords()}")
+        print(f"Прямоугольник с координатами: {self.__sp.get_coords()}{self.__ep.get_coords()}")
 
 
 rect = Rectangle(0, 0, 20, 34)
+rect.draw()
