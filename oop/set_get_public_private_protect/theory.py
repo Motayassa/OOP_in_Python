@@ -7,7 +7,7 @@ __attribute (с двумя подчеркиваниями) –
 режим доступа private (служит для обращения только внутри класса).
 '''
 
-from accessify import private, protected
+from accessify import private  # protected
 
 
 class Point:
