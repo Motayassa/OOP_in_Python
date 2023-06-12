@@ -15,7 +15,7 @@ class Money:
         self.__money = mn.__money + self.__money
 
     @classmethod
-    def __check_money(self, money):
+    def __check_money(cls, money):
         return type(money) == int and money >= 0
 
 
