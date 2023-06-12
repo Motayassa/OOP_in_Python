@@ -22,3 +22,21 @@ class Book:
         self.__autor = author
         self.__title = title
         self.__price = price
+
+    def set_title(self, title):
+        pass
+
+    def set_author(self, author):
+        pass
+
+    def set_price(self, price):
+        pass
+
+    def get_title(self):
+        pass
+
+    def get_author(self):
+        pass
+
+    def get_price(self):
+        pass
