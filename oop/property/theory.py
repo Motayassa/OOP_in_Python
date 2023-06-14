@@ -18,6 +18,7 @@ class Person:
     old = old.setter(set_old)
     old = old.getter(get_old)
 
+
 p = Person('Сергей', 20)
 # p.set_old(35)
 print(p.get_old())
