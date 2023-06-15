@@ -8,6 +8,7 @@ class Person:
     old = property()
     old = old.setter(set_old)
     old = old.getter(get_old)
+    old = old.deleter(del_old)
     '''
     @property
     def old(self):  # объект-свойство (ГЕТТЕР)
