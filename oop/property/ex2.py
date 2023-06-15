@@ -30,7 +30,3 @@ class WindowDlg:
             if self.__height:
                 self.show()
             self.__height = value_height
-
-
-wnd = WindowDlg(120, 100, 50)
-wnd.height = 1000
