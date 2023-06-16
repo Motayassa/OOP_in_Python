@@ -1,19 +1,20 @@
 ''' NON-DATA DESCRIPTOR
 class A:
-    def __get__(self, instance, owner): 
+    def __get__(self, instance, owner):
         return ...
 '''
 '''DATA DESCRIPTOR
 class B:
     def __get__(self, instance, owner):
         return ...
- 
+
     def __set__(self, instance, value):
         ...
- 
+
     def __del__(self):
         ...
 '''
+
 
 class Point3D:
     def __init__(self, x, y, z):  # Формируются защищенные локальные
