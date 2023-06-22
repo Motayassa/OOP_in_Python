@@ -23,8 +23,3 @@ class Clock:
 
     def get_time(self):
         return self._hours * 3600 + self._minutes * 60 + self._seconds
-
-
-dt = DeltaClock(Clock(2, 45, 0), Clock(1, 15, 0))
-print(dt) # 01: 30: 00
-len_dt = len(dt) # 5400
