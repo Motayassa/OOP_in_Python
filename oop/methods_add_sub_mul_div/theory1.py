@@ -43,7 +43,7 @@ class Clock:
             raise ArithmeticError("Правый операнд должен быть типом int или объектом Clock")
 
         sc = other if isinstance(other, int) else other.seconds
-        return Clock(self.seconds + sc)
+        return self.__class__(self.seconds + sc)
 
     def __radd__(self, other):  # сложение int + object
         return self + other
