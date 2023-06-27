@@ -22,14 +22,6 @@ lst_in = ['Системный блок: 1500 75890.56',
           'Монитор Samsung: 2000 34000',
           'Клавиатура: 200.44 545',
           'Монитор Samsung: 2000 34000']
-for i in lst_in:
-    i.split()
-
-for i in lst_in:
-    x = ShopItem(i[0], i[1], i[2])
-    lst.append(x)
-shop_items = {}
-print(*lst)
 
 '''
 Строки имеют следующий формат:
