@@ -36,4 +36,3 @@ pers = Person('Гейтс Б.', 'бизнесмен', 61, 1000000, 46)
 pers[0] = 'Балакирев С.М.'
 for v in pers:
     print(v)
-pers[5] = 123 # IndexError
