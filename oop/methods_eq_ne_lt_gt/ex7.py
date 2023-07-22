@@ -14,10 +14,10 @@ class Body:
             body2 = self.mass(other.ro, other.volume)
             return body1 > body2
 
-        if type(other) == Body and type(self) in (int, float):
-            body2 = self.mass(other.ro, other.volume)
-            return other > body2
-        
+        if type(self) == Body and type(other) in (int, float):
+            body2 = self.mass(self.ro, self.volume)
+            return body2 > other
+
     def __rgt__(self, other):
         return self > other
 
@@ -25,7 +25,7 @@ class Body:
         if type(other) in (int, float) and type(self) == Body:
             body1 = self.mass(self.ro, self.volume)
             return body1 < other
-        if type(other) == Body and type(self) == Body:
+        if type(self) == Body and type(other) == Body:
             body1 = self.mass(self.ro, self.volume)
             body2 = self.mass(other.ro, other.volume)
             return body1 < body2
